@@ -1,0 +1,37 @@
+-- IHK PROJEKT SCHEMA: LERN-APP
+-- ERSTELLT AM: 2026-03-31
+
+CREATE DATABASE IF NOT EXISTS learnapp;
+USE learnapp;
+
+-- 1. Kategorien
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+-- 2. Fragen
+CREATE TABLE questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    text VARCHAR(500) NOT NULL,
+    category_id INT NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+-- 3. Benutzer
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+-- 4. Ergebnisse (Für den adaptiven Algorithmus)
+CREATE TABLE user_results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    question_id INT NOT NULL,
+    is_correct BOOLEAN NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
