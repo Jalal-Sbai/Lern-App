@@ -10,8 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class QuizRepository {
+    private static final Logger LOGGER = Logger.getLogger(QuizRepository.class.getName());
 
     // Liest das Ranking dynamisch aus der Datenbank aus
     public List<LeaderboardEntry> getLeaderboard() {
@@ -25,7 +28,6 @@ public class QuizRepository {
                 "GROUP BY u.username " +
                 "ORDER BY score DESC";
 
-        DriverManager DatabaseConnection;
         try (Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {
@@ -37,8 +39,8 @@ public class QuizRepository {
                         rs.getInt("score")));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Fehler beim Laden des Leaderboards", e);
         }
         return ranking;
     }
-} // <- DIESE KLAMMER FEHLTE BEI DIR
+}
