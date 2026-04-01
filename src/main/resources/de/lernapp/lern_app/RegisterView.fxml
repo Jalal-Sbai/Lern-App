@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="de.lernapp.lern_app.controllers.RegisterController">
+    
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+    </padding>
+
+    <Label text="Neues Konto erstellen">
+        <font>
+            <Font name="System Bold" size="20.0" />
+        </font>
+    </Label>
+
+    <VBox spacing="5.0">
+        <Label text="Benutzername:" />
+        <TextField fx:id="usernameField" promptText="Wähle einen Namen..." />
+    </VBox>
+
+    <VBox spacing="5.0">
+        <Label text="Passwort:" />
+        <PasswordField fx:id="passwordField" promptText="Wähle ein Passwort..." />
+    </VBox>
+    
+    <VBox spacing="5.0">
+        <Label text="Passwort bestätigen:" />
+        <PasswordField fx:id="confirmPasswordField" promptText="Passwort wiederholen..." />
+    </VBox>
+
+    <Button onAction="#handleRegistration" prefHeight="30.0" prefWidth="120.0" text="Registrieren" />
+    <Button onAction="#switchToLogin" prefHeight="25.0" prefWidth="100.0" text="Zurück zum Login" style="-fx-font-size: 10px;"/>
+
+    <Label fx:id="statusLabel" />
+</VBox>
