@@ -32,6 +32,9 @@
     </VBox>
 
     <Button onAction="#handleLogin" prefHeight="30.0" prefWidth="120.0" text="Anmelden" />
+    
+    <Label text="Noch kein Konto?" style="-fx-font-size: 10px;"/>
+    <Button onAction="#switchToRegister" prefHeight="25.0" prefWidth="100.0" text="Registrieren" style="-fx-font-size: 10px;"/>
 
-    <Label fx:id="errorLabel" text="" textFill="RED" />
+    <Label fx:id="errorLabel" textFill="RED" />
 </VBox>
