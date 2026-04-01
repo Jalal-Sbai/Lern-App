@@ -7,10 +7,9 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Diese Klasse dient dem einmaligen Setup der Datenbankstruktur.
- * Sie nutzt PreparedStatements und Transaktionen (Rollback im Fehlerfall).
- */
+ // Diese Klasse dient dem einmaligen Setup der Datenbankstruktur.
+ // Sie nutzt PreparedStatements und Transaktionen (Rollback im Fehlerfall).
+
 public class DatabaseInitializer {
     private static final Logger LOGGER = Logger.getLogger(DatabaseInitializer.class.getName());
 
