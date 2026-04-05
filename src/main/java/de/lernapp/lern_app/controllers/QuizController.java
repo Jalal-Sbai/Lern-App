@@ -101,7 +101,7 @@ public class QuizController {
             feedbackLabel.setText("Falsch! Richtig wäre: " + currentQuestion.getCorrectAnswer());
             feedbackLabel.setStyle("-fx-text-fill: red;");
         }
-        
+        // Vermeidung von Null-Pointern und Speichern in DAO
         if (currentUser != null) {
             quizDAO.saveResult(currentUser.getId(), currentQuestion.getId(), isCorrect);
             refreshLeaderboard();
@@ -123,8 +123,6 @@ public class QuizController {
         btnOptionC.setDisable(disable);
         btnOptionD.setDisable(disable);
     }
-
-
      //  Lädt die aktuellen Ranking-Daten über den DAO und zeigt sie in der Liste an.
 
     private void refreshLeaderboard() {

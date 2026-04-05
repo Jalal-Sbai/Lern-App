@@ -1,39 +1,39 @@
-# Lern-Applikation zur adaptiven Prüfungsvorbereitung
+# Lern-App für die IHK Prüfungsvorbereitung 
 
-Diese Desktop-Anwendung wurde im Rahmen eines IHK-Abschlussprojekts entwickelt. Sie dient der Vorbereitung auf fachtheoretische Prüfungen durch einen Fragenpool mit Datenbankanbindung.
+Willkommen in meinem Repository! Dies ist mein finales IHK-Abschlussprojekt. Ich habe hier eine datenbankgestützte Desktop-Anwendung gebaut, mit der man sich interaktiv auf Theorieprüfungen vorbereiten kann. 
 
-Das System nutzt einen Algorithmus für die Wiederholung von Fragen, wobei falsch beantwortete Inhalte priorisiert werden (adaptive Lernmethode).
+Die Idee dahinter: Ein intelligentes Quiz, das sich merkt, welche Antworten falsch waren, und diese Fragen dann öfter wiederholt, bis sie sitzen (Adaptives Lernen).
 
-## Funktionen
-- **Login-System:** Benutzerauthentifizierung mit Passworthashing.
-- **Prüfungsmodus:** Strukturierte Abfrage verschiedener Kategorien.
-- **Adaptives Lernen:** Automatisierte Auswahl von Schwachpunkten.
-- **Auswertung:** Anzeige der erreichten Punktzahl und Ranking.
+## Features
+- **Sicherer Login:** Echte Benutzerauthentifizierung mit sicherem Passwort-Hashing.
+- **Intelligentes Quiz:** Fragen werden live aus der MySQL-Datenbank geladen. Schwachstellen des Nutzers werden gezielt trainiert. 
+- **Live Leaderboard:** Ein dynamisches Ranking zeigt sofort an, wer die meisten Fragen richtig beantwortet hat.
 
----
+## Mein Tech-Stack
+Ich habe großen Wert auf eine saubere Softwarearchitektur gelegt und das Programm konsequent nach dem **MVC-Pattern** (Model-View-Controller) aufgebaut.
+- **Sprache:** Java 21 LTS
+- **Oberfläche (GUI):** JavaFX 21 (mit FXML)
+- **Datenbank:** MySQL 8.0 
+- **Datenzugriff:** DAO-Pattern (Data Access Objects) via JDBC
+- **Build-Tool:** Maven
 
-## Architektur und Technologien
-Das Projekt wurde konsequent nach dem **Model-View-Controller (MVC) Muster** aufgebaut. 
-* **Backend:** Java 21 LTS
-* **Frontend:** JavaFX 21 (FXML)
-* **Datenbank:** MySQL 8.0 Server
-* **Persistenz-Layer:** Data Access Objects (DAO) via JDBC
+## So startest du das Projekt lokal 
 
----
+Damit du den Code bei dir testen kannst, musst du nur kurz die Datenbank aufsetzen:
 
-## Installation und Setup
+1. **Datenbank erstellen:**  
+   Führe einfach das beiliegende Skript `schema.sql` auf deinem eigenen MySQL Server aus. Das erstellt automatisch alle nötigen Tabellen (wie z.B. `user_results`) für dich.
 
-### 1. Datenbank einrichten
-Nutze die Datei `schema.sql`, um deine Datenbankumgebung lokal vorbereiten.
+2. **Umgebungsvariablen setzen:**  
+   Da ich keine Datenbank-Passwörter direkt im Quellcode abspeichern wollte (Sicherheit geht vor!), liest die App diese Daten aus den lokalen Umgebungsvariablen deines PCs. Lege eifach folgende Variablen in Windows an:
+   - `DB_URL`: `jdbc:mysql://localhost:3306/learnapp`
+   - `DB_USER`: Dein Datenbank-Benutzername (z.B. `root`)
+   - `DB_PASSWORD`: Dein MySQL-Passwort
 
-### 2. Umgebungsvariablen (Environment Variables)
-Das Programm kommuniziert aus Sicherheitsgründen nicht über fest programmierte Passwörter. Bitte konfiguriere folgende Umgebungsvariablen auf deinem PC:
-* `DB_URL` : `jdbc:mysql://localhost:3306/learnapp`
-* `DB_USER` : Dein MySQL-Benutzer (z.B. root)
-* `DB_PASSWORD` : Dein MySQL-Passwort
+3. **App starten:**  
+   Da das Projekt Maven nutzt, zieht es sich alle UI-Bibliotheken und Treiber selbst. Du kannst es einfach über deine IDE oder über das Terminal starten:
+   ```bash
+   mvn clean javafx:run
+   ```
 
-### 3. Ausführung
-Da das Projekt Maven verwendet, können alle Abhängigkeiten automatisch geladen werden:
-```bash
-mvn clean javafx:run
-```
+Viel Spaß beim Ausprobieren! 
